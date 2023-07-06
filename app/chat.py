@@ -17,8 +17,12 @@ chat = Blueprint('chat', __name__)
 
 @chat.route('/api/', methods=["post"])
 def question():
-    req_data = json.loads(request.data.decode('utf-8'))
+    try:
+        req_data = json.loads(request.data.decode('utf-8'))
+    except json.JSONDecodeError:
+        log.error("请求参数不是json格式")
+        return "请求参数不是json格式"
     log.info("请求参数: {}".format(req_data))
     res = question_answer_turbo_api(req_data)
+    log.info("返回参数: {}".format(res))
     return ResponseUtils.success_with_data(res)
-
