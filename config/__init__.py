@@ -4,3 +4,6 @@
 # @Email   : 1794748404@qq.com
 # @File    : __init__.py.py
 # @Software: PyCharm
+# -*- coding: utf-8 -*-
+import os
+CONFIG_PATH = os.path.abspath(os.path.dirname(__file__))
