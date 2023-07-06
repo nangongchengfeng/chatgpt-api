@@ -4,3 +4,11 @@
 # @Email   : 1794748404@qq.com
 # @File    : chat.py
 # @Software: PyCharm
+from flask import Blueprint
+
+chat = Blueprint('chat', __name__)
+
+
+@chat.route('/api/')
+def hello():
+    return 'Hello from blueprint!'

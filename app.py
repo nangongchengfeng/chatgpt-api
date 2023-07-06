@@ -6,15 +6,30 @@
 # @Software: PyCharm
 import os
 
-from flask import Flask
-from flask import Flask
+from flask import Flask, jsonify, make_response
+
+from app.chat import chat
 
 app = Flask(__name__)
+app.register_blueprint(chat, url_prefix='/chat')
 
 
 @app.route('/')
 def index():
     return "hello world"
+
+
+@app.route('/actuator/health', methods=['GET', 'HEAD'])
+def health():
+    return jsonify({'online': True})
+
+
+@app.errorhandler(400)
+@app.errorhandler(404)
+def handle_error(error):
+    error_code = str(error.code)
+    error_msg = '请求参数不合法' if error.code == 400 else '页面未找到'
+    return make_response(jsonify({'code': error_code, 'msg': error_msg}), error.code)
 
 
 if __name__ == '__main__':
