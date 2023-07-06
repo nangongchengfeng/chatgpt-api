@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import platform
-from apollo_config import AppKey1, AppKey2
+from .apollo_config import AppKey1, AppKey2
 
 # openai-chatgpt 相关配置
 model_quester_anster = "text-davinci-003"

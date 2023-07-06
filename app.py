@@ -9,6 +9,7 @@ import os
 from flask import Flask, jsonify, make_response
 
 from app.chat import chat
+from utils.LogHandler import log
 from utils.response_util import ResponseUtils
 
 app = Flask(__name__)
@@ -36,4 +37,5 @@ def handle_error(error):
 if __name__ == '__main__':
     os.environ['STABILITY_HOST'] = 'grpc.stability.ai:443'
     app.config['JSON_AS_ASCII'] = False
+    log.info('Starting the app...')
     app.run(debug=True, host="0.0.0.0", use_reloader=False)
