@@ -9,6 +9,7 @@ import os
 from flask import Flask, jsonify, make_response
 
 from app.chat import chat
+from utils.response_util import ResponseUtils
 
 app = Flask(__name__)
 app.register_blueprint(chat, url_prefix='/chat')
@@ -16,7 +17,7 @@ app.register_blueprint(chat, url_prefix='/chat')
 
 @app.route('/')
 def index():
-    return "hello world"
+    return ResponseUtils.success()
 
 
 @app.route('/actuator/health', methods=['GET', 'HEAD'])
